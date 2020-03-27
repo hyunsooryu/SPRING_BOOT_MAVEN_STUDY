@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.srt.mapper.UrlDataCountMapper">
+	<insert id="create">	
+		insert into urldata_count (short_url, count)
+		values(#{shortUrl}, 0)
+	</insert>
+	
+	<update id = "update">
+	  update urldata_count set count = count + 1
+	where short_url = #{shortUrl};
+	</update>
+	
+	<select id = "check" resultType = "int">
+	  select count(short_url) from urldata_count
+	  where short_url = #{shortUrl};
+	</select>
+</mapper>

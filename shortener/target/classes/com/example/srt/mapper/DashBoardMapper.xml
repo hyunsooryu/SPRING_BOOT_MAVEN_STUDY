@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.srt.mapper.DashBoardMapper">
+
+	
+
+	<select id = "readAllUrlData" resultType = "com.example.srt.domain.UrlData">
+		select short_url as shortUrl, original_url as originalUrl 
+		from urldata
+	</select>
+	
+	<select id = "readAllUrlDataCount" resultType = "com.example.srt.domain.UrlDataCount">
+		select short_url as shortUrl, count as count 
+		from urldata_count
+	</select>
+	
+
+	<select id = "readAllUrlDataAndCount" resultType = "com.example.srt.domain.DashBoardWholeData">
+		select b.short_url shortUrl, a.original_url originalUrl, b.count count
+		from urldata_count b LEFT JOIN urldata a
+		on(b.short_url = a.short_url)
+	</select>
+
+	
+</mapper>
